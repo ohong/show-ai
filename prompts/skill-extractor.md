@@ -237,27 +237,19 @@ This skill covers cloning a GitHub repository and starting a local development s
 
 Navigate to the desired directory and clone the repository:
 
-```bash
 git clone https://github.com/example/repo.git
-```
 
 ### Step 2: Navigate to Project Directory
 
-```bash
 cd repo
-```
 
 ### Step 3: Install Dependencies
 
-```bash
 npm install
-```
 
 ### Step 4: Start Development Server
 
-```bash
 npm run dev
-```
 
 ## Expected Outcome
 
