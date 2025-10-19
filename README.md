@@ -31,4 +31,61 @@ These skill packages can be downloaded as zip files, converted into MCP servers 
 
 ## Tech Stack
 
-Next.js • TypeScript • Tailwind CSS • Gemini 2.5 Computer Use • Browserbase • Supabase
+**Frontend:** Next.js • TypeScript • Tailwind CSS • Clerk • Supabase • AWS S3
+
+**Backend:** Python • FastAPI • Gemini 2.5 Computer Use • Browserbase • Playwright
+
+## Project Structure
+
+This is a monorepo containing both the frontend and backend:
+
+```
+show-ai/
+├── api/              # Python backend (FastAPI + Browser Automation)
+├── src/              # Next.js frontend
+├── public/           # Static assets
+└── package.json      # Frontend dependencies
+```
+
+## Development Setup
+
+### Frontend
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the app.
+
+### Backend API
+
+See [api/README.md](api/README.md) for detailed setup instructions.
+
+Quick start:
+
+```bash
+# Navigate to API directory
+cd api
+
+# Set up Python environment
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+# Install Playwright
+playwright install chrome
+
+# Set environment variables
+export GEMINI_API_KEY="your-key"
+export BROWSERBASE_API_KEY="your-key"
+export BROWSERBASE_PROJECT_ID="your-project-id"
+
+# Run FastAPI server
+uvicorn api_server:app --reload --port 8000
+```
+
+The API will be available at [http://localhost:8000](http://localhost:8000)

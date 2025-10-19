@@ -19,8 +19,8 @@ export function PageHeader() {
             <Image
               src="/simple-logo.png"
               alt="Watch & Learn logo"
-              width={64}
-              height={64}
+              width={96}
+              height={96}
               priority
             />
             <SiteNav />
