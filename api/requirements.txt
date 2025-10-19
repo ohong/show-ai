@@ -8,3 +8,4 @@ rich
 pytest
 fastapi
 uvicorn[standard]
+python-dotenv
