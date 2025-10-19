@@ -62,105 +62,84 @@ export function UploadPanel() {
 
   return (
     <section id="upload" className="border-y-4 border-border bg-background">
-      <div className="layout-shell py-16">
-        <div className="stack gap-12">
-          <div className="stack">
-            <h2 className="section-heading">Step 01 · Feed Watch &amp; Learn</h2>
-            <p className="caption max-w-3xl">
-              Pick the source that is easiest for your team. We hash first, dedupe against Supabase,
-              and only upload what is needed so you can move on to the trace with confidence.
+      <div className="layout-shell py-20">
+        <div className="stack items-center gap-6 text-center">
+          <h2 className="section-heading">Upload your walkthrough</h2>
+          <p className="caption max-w-2xl">
+            Drag a recording or share a link. We hash it instantly, skip duplicates, and keep your
+            footage local until it is needed.
+          </p>
+        </div>
+        <div className="mx-auto mt-12 flex max-w-2xl flex-col gap-6">
+          <label
+            htmlFor="video-upload"
+            onDragOver={(e) => {
+              e.preventDefault();
+              e.dataTransfer.dropEffect = "copy";
+            }}
+            onDrop={handleDrop}
+            className="upload-callout"
+          >
+            <span className="meta-label">From your device</span>
+            <h3 className="font-display text-2xl tracking-[0.04em]">Drop a video or click to choose</h3>
+            <p className="caption text-sm">
+              MP4, MOV, WEBM up to 30 minutes. We compute the hash locally before anything is uploaded.
             </p>
-          </div>
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-            <div className="grid gap-6 lg:grid-cols-2">
-              <label
-                htmlFor="video-upload"
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  e.dataTransfer.dropEffect = "copy";
+            <button
+              type="button"
+              className="button-inline"
+              onClick={() => inputRef.current?.click()}
+            >
+              Select video
+            </button>
+            <input
+              id="video-upload"
+              ref={inputRef}
+              type="file"
+              accept={ACCEPTED_TYPES.join(",")}
+              onChange={(event) => handleFileSelect(event.target.files)}
+            />
+            {selectedFile && (
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-info">
+                Selected ► {selectedFile.name} · {(selectedFile.size / (1024 * 1024)).toFixed(1)}MB
+              </p>
+            )}
+            {error && (
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-danger">{error}</p>
+            )}
+          </label>
+          <form onSubmit={handleUrlSubmit} className="link-panel">
+            <span className="meta-label">Or paste a public link</span>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <input
+                className="input-field flex-1"
+                type="url"
+                placeholder="https://youtube.com/watch?v=…"
+                value={url}
+                onChange={(event) => {
+                  setUrl(event.target.value);
+                  setUrlError(null);
+                  setUrlMessage(null);
                 }}
-                onDrop={handleDrop}
-                className="brutalist-card upload-panel stack"
-              >
-                <span className="meta-label">Option A · From your device</span>
-                <p className="font-display text-lg tracking-[0.04em]">
-                  Upload a recording (MP4, MOV, WEBM)
-                </p>
-                <p className="caption text-sm">
-                  Best for internal walkthroughs. We hash locally first so duplicates never leave your
-                  machine.
-                </p>
-                <div className="flex flex-wrap items-center gap-4">
-                  <button
-                    type="button"
-                    className="button-inline"
-                    onClick={() => inputRef.current?.click()}
-                  >
-                    Choose File
-                  </button>
-                  <span className="font-mono text-xs text-muted">…or drag into this panel</span>
-                </div>
-                <input
-                  id="video-upload"
-                  ref={inputRef}
-                  type="file"
-                  accept={ACCEPTED_TYPES.join(",")}
-                  onChange={(event) => handleFileSelect(event.target.files)}
-                />
-                {selectedFile && (
-                  <p className="font-mono text-xs uppercase tracking-[0.12em] text-info">
-                    Selected ► {selectedFile.name} ·{" "}
-                    {(selectedFile.size / (1024 * 1024)).toFixed(1)}MB
-                  </p>
-                )}
-                {error && (
-                  <p className="font-mono text-xs uppercase tracking-[0.12em] text-danger">{error}</p>
-                )}
-              </label>
-              <form onSubmit={handleUrlSubmit} className="brutalist-card stack">
-                <span className="meta-label">Option B · From a link</span>
-                <p className="font-display text-lg tracking-[0.04em]">
-                  Paste a public YouTube or MP4 URL
-                </p>
-                <p className="caption text-sm">
-                  We fetch it with yt-dlp, apply the same hash check, and store the source URL in
-                  metadata for future reuse.
-                </p>
-                <input
-                  className="input-field"
-                  type="url"
-                  placeholder="https://youtube.com/watch?v=…"
-                  value={url}
-                  onChange={(event) => {
-                    setUrl(event.target.value);
-                    setUrlError(null);
-                    setUrlMessage(null);
-                  }}
-                />
-                <div className="flex flex-wrap items-center gap-3">
-                  <button type="submit" className="button-inline">
-                    Capture Link
-                  </button>
-                  <span className="font-mono text-xs text-muted">No download until you confirm</span>
-                </div>
-                {urlMessage && (
-                  <p className="font-mono text-xs uppercase tracking-[0.12em] text-info">{urlMessage}</p>
-                )}
-                {urlError && (
-                  <p className="font-mono text-xs uppercase tracking-[0.12em] text-danger">{urlError}</p>
-                )}
-              </form>
+              />
+              <button type="submit" className="button-inline">
+                Use link
+              </button>
             </div>
-            <aside className="brutalist-card stack">
-              <h3 className="font-display text-lg tracking-[0.04em]">What happens next</h3>
-              <ul className="bullet-grid text-sm">
-                <li>We compute SHA-256 hashes client-side before any network call.</li>
-                <li>Cache hit? We send you straight to the finished skill bundle.</li>
-                <li>New footage? Frames stream into the trace within seconds.</li>
-                <li>You control when to pause, review the trace, and download.</li>
-              </ul>
-            </aside>
-          </div>
+            {urlMessage && (
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-info text-center">
+                {urlMessage}
+              </p>
+            )}
+            {urlError && (
+              <p className="font-mono text-xs uppercase tracking-[0.12em] text-danger text-center">
+                {urlError}
+              </p>
+            )}
+          </form>
+          <p className="caption text-center text-sm text-muted">
+            Already processed the same walkthrough? We reuse the finished bundle instantly.
+          </p>
         </div>
       </div>
     </section>

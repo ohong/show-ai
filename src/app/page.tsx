@@ -1,5 +1,4 @@
 import { PageHeader } from "@/components/PageHeader";
-import { HighlightGrid } from "@/components/HighlightGrid";
 import { PipelineSection } from "@/components/PipelineSection";
 import { UploadPanel } from "@/components/UploadPanel";
 import { TechSpecs } from "@/components/TechSpecs";
@@ -8,7 +7,6 @@ export default function Page() {
   return (
     <main className="grid-overlay min-h-screen">
       <PageHeader />
-      <HighlightGrid />
       <UploadPanel />
       <PipelineSection />
       <TechSpecs />

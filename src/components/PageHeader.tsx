@@ -1,28 +1,15 @@
-import Image from "next/image";
-
 export function PageHeader() {
   return (
     <header className="border-b-4 border-border bg-accent-thin">
       <div className="layout-shell py-16">
-        <div className="flex flex-col gap-6 pb-12 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
-            <Image
-              src="/simple-logo.png"
-              alt="Watch & Learn logo"
-              width={64}
-              height={64}
-              priority
-            />
-            <div className="flex flex-col gap-1">
-              <span className="meta-label">Agent-ready skills from real workflows</span>
-              <span className="font-display text-sm uppercase tracking-[0.24em]">
-                Watch &amp; Learn
-              </span>
-            </div>
-          </div>
-          <a href="#upload" className="button-inline">
-            Upload your walkthrough
-          </a>
+        <div className="mb-10 flex items-center gap-4">
+          <Image
+            src="/simple-logo.png"
+            alt="Watch & Learn logo"
+            width={64}
+            height={64}
+            priority
+          />
         </div>
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-start">
           <div className="stack">
@@ -79,3 +66,4 @@ export function PageHeader() {
     </header>
   );
 }
+import Image from "next/image";

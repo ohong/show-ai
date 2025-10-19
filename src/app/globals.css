@@ -221,6 +221,43 @@ input[type="file"] {
   background-color: rgba(29, 74, 255, 0.24);
 }
 
+.upload-callout {
+  border: 2px dashed var(--color-border);
+  background-color: rgba(229, 231, 224, 0.4);
+  padding: 3rem 2rem;
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.upload-callout:hover {
+  background-color: rgba(229, 231, 224, 0.55);
+  transform: translateY(-4px);
+  cursor: pointer;
+}
+
+:root[data-theme="dark"] .upload-callout {
+  background-color: rgba(44, 44, 44, 0.5);
+}
+
+:root[data-theme="dark"] .upload-callout:hover {
+  background-color: rgba(44, 44, 44, 0.68);
+}
+
+.link-panel {
+  border: 2px solid var(--color-border);
+  padding: 1.75rem;
+  display: grid;
+  gap: 1rem;
+  background-color: rgba(229, 231, 224, 0.2);
+}
+
+:root[data-theme="dark"] .link-panel {
+  background-color: rgba(44, 44, 44, 0.45);
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
