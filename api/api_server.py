@@ -42,7 +42,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Constants
-PLAYWRIGHT_SCREEN_SIZE = (1440, 900)
+PLAYWRIGHT_SCREEN_SIZE = (1920, 1080)
 
 # FastAPI app
 app = FastAPI(
@@ -279,10 +279,16 @@ async def execute_browser_task_stream(request: BrowserTaskRequest):
 
                 # Run the agent
                 log_queue.put(('log', 'Initializing browser agent'))
+
+                # Define callback for agent reasoning logs
+                def reasoning_callback(data):
+                    log_queue.put(('reasoning', data['reasoning'], data['function_calls']))
+
                 agent = BrowserAgent(
                     browser_computer=browser_computer,
                     query=request.query,
                     model_name=request.model,
+                    log_callback=reasoning_callback,
                 )
 
                 log_queue.put(('log', 'Starting agent execution loop'))
@@ -318,6 +324,8 @@ async def execute_browser_task_stream(request: BrowserTaskRequest):
                             return
                         elif message[0] == 'log':
                             yield f"data: {json.dumps({'type': 'log', 'message': message[1]})}\n\n"
+                        elif message[0] == 'reasoning':
+                            yield f"data: {json.dumps({'type': 'reasoning', 'reasoning': message[1], 'function_calls': message[2]})}\n\n"
                         elif message[0] == 'live_view_url':
                             yield f"data: {json.dumps({'type': 'live_view_url', 'url': message[1]})}\n\n"
                         elif message[0] == 'session_url':
