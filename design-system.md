@@ -1,34 +1,51 @@
-# "Watch and Learn" Design System
+# Design System Overview: Technical Neo-brutalism Lite
 
-## Aesthetic Guidelines: Neo-Brutalism + Technical Wireframe
+## Visual Foundation
+- Off-white canvas (`#EEEFE9`) with subtle grid overlay
+- Blueprint-inspired aesthetic with engineering drawing references
+- Color palette: see below
 
-**Visual Language:**
-- Monospaced fonts: JetBrains Mono for data, Space Mono for headings
-- Blueprint grid overlay (subtle gray lines, 8px spacing)
-- 3D extruded typography for section headers (CSS transform: translateZ)
-- Architectural line drawings for agent workflow diagrams
+## Typography
+- Large serif headings in red for hierarchy
+- Clean sans-serif body text
+- Small-cap subheadings with generous letter-spacing
+- Abundant white space for readability
 
-**Layout Principles:**
-- Information density over whitespace
-- Functional brutalism: no shadows, no gradients, no rounded corners
-- Grid-based alignment (everything snaps to 8px grid)
-- Typography as structure (headers double as section dividers)
+## Interactive Elements
+- Primary buttons: filled red (`#F54E00`), rounded corners, subtle drop-shadows
+- Secondary buttons: bordered with optional keyboard-style labels
+- Slim top navigation bar with prominent CTA
+- Consistent button treatment throughout
 
-## Colour Palette
+## Layout Patterns
+- Modular sections separated by grid-derived horizontal rules
+- Two-column layouts: text paired with interface screenshots
+- Feature cards: line icons with dashed borders
+- Extension cards: uniform backgrounds with metadata
+- Testimonial mosaics: avatars with bordered quote cards
+
+## Distinctive Details
+- Animated corner character for personality
+- Team letter on patterned stationery with stamp
+- Bold red CTA section above organized dark footer
+
+System balances engineering precision with human warmth through grid structure, restrained palette, and considered embellishments.
+
+## Colour Schemes
 
 We maintain two colour schemes (light and dark) that share a core set of hues. Light mode is the primary palette used publicly, while dark mode appears in-product or when the user toggles themes. Colours marked with an asterisk (*) remain identical between palettes so that accents and shared UI elements feel consistent.
 
-| Name                        | Light mode | Dark mode |
-|-----------------------------|------------|-----------|
-| Text colour (at 90% opacity) | <span style="color:#151515; font-size: 20px">■</span> `#151515`  | <span style="color:#EEEFE9; font-size: 20px">■</span> `#EEEFE9` |
-| Background colour            | <span style="color:#EEEFE9; font-size: 20px">■</span> `#EEEFE9`  | <span style="color:#151515; font-size: 20px">■</span> `#151515` |
-| Accent                       | <span style="color:#E5E7E0; font-size: 20px">■</span> `#E5E7E0`  | <span style="color:#2C2C2C; font-size: 20px">■</span> `#2C2C2C` |
-| Dashed divider line          | <span style="color:#D0D1C9; font-size: 20px">■</span> `#D0D1C9`  | <span style="color:#4B4B4B; font-size: 20px">■</span> `#4B4B4B` |
-| Red*                         | <span style="color:#F54E00; font-size: 20px">■</span> `#F54E00`  |           |
-| Yellow                       | <span style="color:#DC9300; font-size: 20px">■</span> `#DC9300`  | <span style="color:#F1A82C; font-size: 20px">■</span> `#F1A82C` |
-| Blue*                        | <span style="color:#1D4AFF; font-size: 20px">■</span> `#1D4AFF`  |           |
-| Gray*                        | <span style="color:#BFBFBC; font-size: 20px">■</span> `#BFBFBC`  |           |
-| Links                        | Use Red    |           |
+| Name                          | Light mode | Dark mode |
+|-------------------------------|------------|-----------|
+| Text color (at 90% opacity)   | `#151515`  | `#EEEFE9` |
+| Background color              | `#EEEFE9`  | `#151515` |
+| Accent                        | `#E5E7E0`  | `#2C2C2C` |
+| Dashed divider line           | `#D0D1C9`  | `#4B4B4B` |
+| Red*                          | `#F54E00`  |           |
+| Yellow                        | `#DC9300`  | `#F1A82C` |
+| Blue*                         | `#1D4AFF`  |           |
+| Gray*                         | `#BFBFBC`  |           |
+| Links                         | Use Red    |           |
 
 The palette deliberately avoids pure white and pure black. Slightly off-white and off-black backgrounds create a softer retro feel, while the primary accents add warmth. When additional shades are needed (for hover states or disabled elements), adjust the opacity of these base colours rather than introducing new hex values.
 
