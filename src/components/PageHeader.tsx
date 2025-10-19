@@ -51,7 +51,7 @@ export function PageHeader() {
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div className="stack">
             <h1 className="font-display text-4xl tracking-[0.05em] md:text-5xl glitch-text glitch-transform" style={{ animation: 'fade-in-text 0.5s ease-out' }}>
-              Teach AI agents skills by{" "}
+              Teach AIs skills by{" "}
               <span className="hero-highlight">showing</span>, not prompting
             </h1>
             
