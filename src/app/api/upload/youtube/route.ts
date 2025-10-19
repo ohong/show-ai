@@ -7,6 +7,9 @@ import { enqueueVideoForProcessing } from '@/lib/sqs'
 
 const YouTubeUrlSchema = z.object({
   url: z.string().url('Invalid YouTube URL'),
+  description: z.string().optional(),
+  isMonetized: z.boolean().optional(),
+  pricePerAccess: z.number().nonnegative().optional(),
 })
 
 // YouTube URL patterns
@@ -40,7 +43,7 @@ export async function POST(req: NextRequest) {
     }
 
     const json = await req.json()
-    const { url } = YouTubeUrlSchema.parse(json)
+    const { url, description, isMonetized, pricePerAccess } = YouTubeUrlSchema.parse(json)
 
     // Validate YouTube URL
     if (!validateYouTubeUrl(url)) {
@@ -104,6 +107,9 @@ export async function POST(req: NextRequest) {
       youtube_duration: videoInfo.duration,
       youtube_thumbnail_url: videoInfo.thumbnailUrl,
       status: 'uploaded' as const,
+      description: description || null,
+      is_monetized: isMonetized || false,
+      price_per_access: pricePerAccess || 0.00,
       metadata: {
         source: 'youtube',
         video_id: videoId,

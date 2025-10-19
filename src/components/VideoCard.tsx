@@ -110,7 +110,7 @@ export function VideoCard({ video, onWatchVideo }: { video: VideoRow; onWatchVid
           </div>
           <div className="flex items-center gap-2 mt-1">
             <span className="text-xs text-muted-foreground">
-              {formatDate(video.created_at)}
+              {formatDate(video.created_at || null)}
             </span>
             {video.file_size && (
               <>

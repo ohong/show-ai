@@ -31,6 +31,13 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
   const [urlMessage, setUrlMessage] = useState<string | null>(null);
   const [isProcessingUrl, setIsProcessingUrl] = useState(false);
 
+  // Description state (shared between both tabs)
+  const [description, setDescription] = useState("");
+
+  // Monetization states
+  const [isMonetized, setIsMonetized] = useState(false);
+  const [pricePerAccess, setPricePerAccess] = useState("");
+
   // Tab state
   const [activeTab, setActiveTab] = useState<"file" | "url">("file");
 
@@ -65,6 +72,9 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
     setUrl("");
     setUrlError(null);
     setUrlMessage(null);
+    setDescription("");
+    setIsMonetized(false);
+    setPricePerAccess("");
     setIsUploading(false);
     setIsProcessingUrl(false);
     setUploadProgress(0);
@@ -181,6 +191,9 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
             fileName: selectedFile.name,
             fileType: selectedFile.type,
             fileSize: selectedFile.size,
+            description: description.trim() || undefined,
+            isMonetized,
+            pricePerAccess: isMonetized && pricePerAccess ? parseFloat(pricePerAccess) : undefined,
           }),
         });
 
@@ -243,7 +256,12 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ url: trimmed }),
+          body: JSON.stringify({ 
+            url: trimmed,
+            description: description.trim() || undefined,
+            isMonetized,
+            pricePerAccess: isMonetized && pricePerAccess ? parseFloat(pricePerAccess) : undefined,
+          }),
         });
 
         if (!response.ok) {
@@ -299,13 +317,13 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
          onClick={(e) => e.stopPropagation()}
          style={{ backgroundColor: "var(--color-background)", border: "4px solid var(--color-border)" }}
        >
-         <div className="p-6">
+         <div className="p-4">
           {/* Header */}
-          <div className="border-b-4 border-border px-8 py-6">
+          <div className="border-b-4 border-border px-4 py-3">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="font-display text-2xl tracking-[0.04em] uppercase">Upload Video</h2>
-                <p className="caption text-sm text-muted mt-1">
+                <h2 className="font-display text-xl tracking-[0.04em] uppercase">Upload Video</h2>
+                <p className="caption text-xs text-muted mt-1">
                   Upload a recording or share a YouTube link
                 </p>
               </div>
@@ -323,7 +341,7 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
           <div className="border-b-4 border-border flex">
             <button
               onClick={() => setActiveTab("file")}
-              className={`flex-1 px-6 py-4 font-display text-sm uppercase tracking-[0.08em] transition-colors border-r-4 border-border ${
+              className={`flex-1 px-4 py-3 font-display text-sm uppercase tracking-[0.08em] transition-colors border-r-4 border-border ${
                 activeTab === "file"
                   ? "bg-accent text-foreground"
                   : "bg-transparent text-muted hover:bg-accent-thin"
@@ -333,7 +351,7 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
             </button>
             <button
               onClick={() => setActiveTab("url")}
-              className={`flex-1 px-6 py-4 font-display text-sm uppercase tracking-[0.08em] transition-colors ${
+              className={`flex-1 px-4 py-3 font-display text-sm uppercase tracking-[0.08em] transition-colors ${
                 activeTab === "url"
                   ? "bg-accent text-foreground"
                   : "bg-transparent text-muted hover:bg-accent-thin"
@@ -344,10 +362,65 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
           </div>
 
           {/* Content */}
-          <div className="px-8 py-8">
+          <div className="px-4 py-4">
+            {/* Description field - shared between both tabs */}
+            <div className="mb-4">
+              <label htmlFor="description" className="meta-label block mb-1">
+                Description (optional)
+              </label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Add a description for your video..."
+                className="input-field w-full min-h-[60px] resize-y"
+                disabled={isUploading || isProcessingUrl}
+                rows={2}
+              />
+            </div>
+
+            {/* Monetization section - shared between both tabs */}
+            <div className="mb-4">
+              <div className="flex items-center gap-3 mb-3">
+                <input
+                  type="checkbox"
+                  id="monetization"
+                  checked={isMonetized}
+                  onChange={(e) => setIsMonetized(e.target.checked)}
+                  disabled={isUploading || isProcessingUrl}
+                  className="w-4 h-4"
+                />
+                <label htmlFor="monetization" className="meta-label">
+                  Enable monetization
+                </label>
+              </div>
+              
+              {isMonetized && (
+                <div className="ml-7">
+                  <label htmlFor="price" className="meta-label block mb-1">
+                    Price per access ($)
+                  </label>
+                  <input
+                    type="number"
+                    id="price"
+                    value={pricePerAccess}
+                    onChange={(e) => setPricePerAccess(e.target.value)}
+                    placeholder="0.00"
+                    min="0"
+                    step="0.01"
+                    disabled={isUploading || isProcessingUrl}
+                    className="input-field w-full"
+                  />
+                  <p className="caption text-xs text-muted mt-1">
+                    Set the price users will pay to access this skill
+                  </p>
+                </div>
+              )}
+            </div>
+
             {activeTab === "file" ? (
               // File Upload Tab
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
@@ -358,15 +431,15 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
                 >
                   <label htmlFor="video-upload" className="cursor-pointer w-full">
                     <span className="meta-label">Drop file here or click to browse</span>
-                    <h3 className="font-display text-xl tracking-[0.04em] mt-2">
+                    <h3 className="font-display text-lg tracking-[0.04em] mt-1">
                       Choose a video file
                     </h3>
-                    <p className="caption text-sm mt-2">
+                    <p className="caption text-xs mt-1">
                       MP4, MOV, WEBM up to 30 minutes. Your file is hashed locally before upload.
                     </p>
                     <button
                       type="button"
-                      className="button-inline mt-4"
+                      className="button-inline mt-2"
                       onClick={() => inputRef.current?.click()}
                     >
                       Select video
@@ -391,7 +464,7 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
                 )}
 
                 {selectedFile && (
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <div className="brutalist-card">
                       <div className="flex items-center justify-between">
                          <div className="flex items-center gap-3">
@@ -483,10 +556,10 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
               </div>
             ) : (
               // URL Upload Tab
-              <form onSubmit={handleUrlSubmit} className="space-y-6">
+              <form onSubmit={handleUrlSubmit} className="space-y-4">
                 <div className="link-panel">
                   <span className="meta-label">Paste a public video link</span>
-                  <div className="flex flex-col gap-3 sm:flex-row mt-4">
+                  <div className="flex flex-col gap-2 sm:flex-row mt-2">
                     <input
                       type="url"
                       placeholder="https://youtube.com/watch?v=…"
@@ -537,7 +610,7 @@ export function VideoUploadDialog({ isOpen, onClose, onSuccess }: VideoUploadDia
           </div>
 
           {/* Footer Info */}
-          <div className="border-t-4 border-border bg-accent-thin px-8 py-4">
+          <div className="border-t-4 border-border bg-accent-thin px-4 py-2">
             
           </div>
         </div>
