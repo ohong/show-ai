@@ -156,13 +156,13 @@ class PlaywrightComputer(Computer):
     def click_at(self, x: int, y: int):
         self.highlight_mouse(x, y)
         self._page.mouse.click(x, y)
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         return self.current_state()
 
     def hover_at(self, x: int, y: int):
         self.highlight_mouse(x, y)
         self._page.mouse.move(x, y)
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         return self.current_state()
 
     def type_text_at(
@@ -175,7 +175,7 @@ class PlaywrightComputer(Computer):
     ) -> EnvState:
         self.highlight_mouse(x, y)
         self._page.mouse.click(x, y)
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
 
         if clear_before_typing:
             if sys.platform == "darwin":
@@ -185,11 +185,11 @@ class PlaywrightComputer(Computer):
             self.key_combination(["Delete"])
 
         self._page.keyboard.type(text)
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
 
         if press_enter:
             self.key_combination(["Enter"])
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         return self.current_state()
 
     def _horizontal_document_scroll(
@@ -204,7 +204,7 @@ class PlaywrightComputer(Computer):
         scroll_argument = f"{sign}{horizontal_scroll_amount}"
         # Scroll using JS.
         self._page.evaluate(f"window.scrollBy({scroll_argument}, 0); ")
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         return self.current_state()
 
     def scroll_document(
@@ -229,7 +229,7 @@ class PlaywrightComputer(Computer):
         self.highlight_mouse(x, y)
 
         self._page.mouse.move(x, y)
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
 
         dx = 0
         dy = 0
@@ -245,7 +245,7 @@ class PlaywrightComputer(Computer):
             raise ValueError("Unsupported direction: ", direction)
 
         self._page.mouse.wheel(dx, dy)
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         return self.current_state()
 
     def wait_5_seconds(self) -> EnvState:
@@ -254,12 +254,12 @@ class PlaywrightComputer(Computer):
 
     def go_back(self) -> EnvState:
         self._page.go_back()
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         return self.current_state()
 
     def go_forward(self) -> EnvState:
         self._page.go_forward()
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         return self.current_state()
 
     def search(self) -> EnvState:
@@ -292,21 +292,21 @@ class PlaywrightComputer(Computer):
     ) -> EnvState:
         self.highlight_mouse(x, y)
         self._page.mouse.move(x, y)
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         self._page.mouse.down()
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
 
         self.highlight_mouse(destination_x, destination_y)
         self._page.mouse.move(destination_x, destination_y)
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         self._page.mouse.up()
         return self.current_state()
 
     def current_state(self) -> EnvState:
-        self._page.wait_for_load_state()
+        # self._page.wait_for_load_state()
         # Even if Playwright reports the page as loaded, it may not be so.
         # Add a manual sleep to make sure the page has finished rendering.
-        time.sleep(0.5)
+        time.sleep(0.3)
         screenshot_bytes = self._page.screenshot(type="png", full_page=False)
         return EnvState(screenshot=screenshot_bytes, url=self._page.url)
 
@@ -346,5 +346,3 @@ class PlaywrightComputer(Computer):
         }}
     """
         )
-        # Wait a bit for the user to see the cursor.
-        time.sleep(1)

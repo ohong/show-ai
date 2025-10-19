@@ -67,11 +67,13 @@ class BrowserAgent:
         query: str,
         model_name: str,
         verbose: bool = True,
+        log_callback: Optional[callable] = None,
     ):
         self._browser_computer = browser_computer
         self._query = query
         self._model_name = model_name
         self._verbose = verbose
+        self._log_callback = log_callback
         self.final_reasoning = None
         self._client = genai.Client(
             api_key=os.environ.get("GEMINI_API_KEY"),
@@ -306,6 +308,13 @@ class BrowserAgent:
         if self._verbose:
             console.print(table)
             print()
+
+        # Send reasoning and function calls to callback if provided
+        if self._log_callback:
+            self._log_callback({
+                'reasoning': reasoning,
+                'function_calls': function_call_strs
+            })
 
         function_responses = []
         for function_call in function_calls:
