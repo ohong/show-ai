@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Space_Mono, JetBrains_Mono } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const spaceMono = Space_Mono({
   subsets: ["latin"],
@@ -26,8 +27,12 @@ export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${spaceMono.variable} ${jetbrains.variable}`}>
-      <body>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={`${spaceMono.variable} ${jetbrains.variable}`}>
+        <body>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

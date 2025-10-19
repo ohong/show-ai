@@ -1,54 +1,12 @@
-# Claude Code
-CLAUDE.md
-.claude/
-
-# Environment variables
-.env.local
-.env*.local
-
-# Dependencies
-node_modules/
-
-# Next.js
-.next/
-out/
-
-# Production
-build/
-dist/
-
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Local env files
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Vercel
-.vercel
-
-# macOS
-.DS_Store
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# clerk configuration (can include secrets)
-/.clerk/
-
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# C extensions
 *.so
+
+# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -67,6 +25,13 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+myenv/
 
 # PyInstaller
 *.manifest
@@ -89,23 +54,32 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-cover/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+pyrightconfig.json
+
+# Linting
+.ruff_cache/
+.pylint.d/
 
 # Translations
 *.mo
 *.pot
 
-# Django stuff:
+# Django stuff
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Flask stuff:
+# Flask stuff
 instance/
 .webassets-cache
 
-# Scrapy stuff:
+# Scrapy stuff
 .scrapy
 
 # Sphinx documentation
@@ -131,13 +105,11 @@ Pipfile.lock
 # poetry
 poetry.lock
 
-# pdm
+# PDM
 .pdm.toml
-
-# PEP 582
 __pypackages__/
 
-# Celery stuff
+# Celery
 celerybeat-schedule
 celerybeat.pid
 
@@ -146,13 +118,8 @@ celerybeat.pid
 
 # Environments
 .env
+.env.*
 .venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-myenv/
 
 # Spyder project settings
 .spyderproject
@@ -177,3 +144,18 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Project-specific
+# Ignore local video downloads and processed artifacts
+downloads/
+
+

@@ -1,15 +1,43 @@
+import Image from "next/image";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+
 export function PageHeader() {
   return (
     <header className="border-b-4 border-border bg-accent-thin">
       <div className="layout-shell py-16">
-        <div className="mb-10 flex items-center gap-4">
-          <Image
-            src="/simple-logo.png"
-            alt="Watch & Learn logo"
-            width={64}
-            height={64}
-            priority
-          />
+        <div className="mb-10 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/simple-logo.png"
+              alt="Watch & Learn logo"
+              width={64}
+              height={64}
+              priority
+            />
+          </div>
+          <div className="flex items-center gap-3">
+            <SignedOut>
+              <SignInButton>
+                <button className="button-inline">
+                  Sign In
+                </button>
+              </SignInButton>
+              <SignUpButton>
+                <button className="button-inline">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
+          </div>
         </div>
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-start">
           <div className="stack">
@@ -66,4 +94,3 @@ export function PageHeader() {
     </header>
   );
 }
-import Image from "next/image";

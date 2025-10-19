@@ -2,11 +2,17 @@ import { PageHeader } from "@/components/PageHeader";
 import { PipelineSection } from "@/components/PipelineSection";
 import { UploadPanel } from "@/components/UploadPanel";
 import { TechSpecs } from "@/components/TechSpecs";
+import { UserProfile } from "@/components/UserProfile";
+import { DebugUserSync } from "@/components/DebugUserSync";
 
 export default function Page() {
   return (
     <main className="grid-overlay min-h-screen">
       <PageHeader />
+      <div className="layout-shell py-8 space-y-6">
+        <UserProfile />
+        <DebugUserSync />
+      </div>
       <UploadPanel />
       <PipelineSection />
       <TechSpecs />
