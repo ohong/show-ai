@@ -15,13 +15,18 @@ export default function Page() {
       <section className="border-y-4 border-border bg-background py-20">
         <div className="layout-shell">
           <div className="stack items-center gap-6 text-center">
-            <h2 className="section-heading">Upload Your Tutorial</h2>
-            <p className="caption max-w-2xl">
+            <h2 className="section-heading">
+              Upload Your Tutorial
+            </h2>
+            
+            <p className="caption max-w-2xl fade-in-text" style={{ animationDelay: '0.2s' }}>
               Transform your screen recordings into AI agent skills. Upload a video or share a YouTube link to get started.
             </p>
+            
             <button
               onClick={() => setIsUploadDialogOpen(true)}
               className="button-inline text-lg px-8 py-4"
+              style={{ animation: 'fade-in-text 0.5s ease-out 0.3s backwards' }}
             >
               Upload Video
             </button>
@@ -31,7 +36,7 @@ export default function Page() {
       
       <footer className="border-t-4 border-border bg-background py-12">
         <div className="layout-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2" style={{ animation: 'fade-in-text 0.5s ease-out 0.4s backwards' }}>
             <p className="font-display text-lg uppercase tracking-[0.08em]">
               Ready to turn tutorials into agent skills?
             </p>
@@ -40,14 +45,17 @@ export default function Page() {
               whole team can trust.
             </p>
           </div>
+          
           <button
             onClick={() => setIsUploadDialogOpen(true)}
             className="button-inline"
+            style={{ animation: 'fade-in-text 0.5s ease-out 0.5s backwards' }}
           >
             Get started
           </button>
         </div>
       </footer>
+      
       <VideoUploadDialog
         isOpen={isUploadDialogOpen}
         onClose={() => setIsUploadDialogOpen(false)}

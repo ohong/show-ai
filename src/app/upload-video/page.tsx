@@ -2,7 +2,8 @@
 
 import { SiteNav } from "@/components/SiteNav";
 import { VideoUploadDialog } from "@/components/VideoUploadDialog";
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
+import { CustomUserButton } from "@/components/CustomUserButton";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -33,7 +34,7 @@ export default function UploadVideoPage() {
               </SignUpButton>
             </SignedOut>
             <SignedIn>
-              <UserButton afterSignOutUrl="/" />
+              <CustomUserButton afterSignOutUrl="/" />
             </SignedIn>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { SiteNav } from "@/components/SiteNav"
 import { MySkillsUpload } from "@/components/MySkillsUpload"
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs"
+import { CustomUserButton } from "@/components/CustomUserButton"
 
 import { auth, currentUser } from "@clerk/nextjs/server"
 import { getSupabaseUser, syncClerkUserToSupabase } from "@/lib/clerk-supabase"
@@ -77,7 +78,7 @@ export default async function MySkillsPage() {
               </SignUpButton>
             </SignedOut>
             <SignedIn>
-              <UserButton afterSignOutUrl="/" />
+              <CustomUserButton afterSignOutUrl="/" />
             </SignedIn>
           </div>
         </div>

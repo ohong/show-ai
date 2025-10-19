@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+
+
+Don't fucking run `npm run dev` just to check syntax errors.
