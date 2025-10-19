@@ -15,6 +15,9 @@ const S3FileSchema = z.object({
   fileType: z.string().min(1, 'fileType is required'),
   fileSize: z.number().nonnegative('fileSize must be >= 0'),
   bucket: z.string().optional(),
+  description: z.string().optional(),
+  isMonetized: z.boolean().optional(),
+  pricePerAccess: z.number().nonnegative().optional(),
 })
 
 // Schema for YouTube URLs
@@ -25,12 +28,18 @@ const YouTubeSchema = z.object({
   youtubeTitle: z.string().optional(),
   youtubeDuration: z.number().optional(),
   youtubeThumbnailUrl: z.string().url().optional(),
+  description: z.string().optional(),
+  isMonetized: z.boolean().optional(),
+  pricePerAccess: z.number().nonnegative().optional(),
 })
 
 // Schema for generic URLs
 const UrlSchema = z.object({
   sourceType: z.literal('url'),
   sourceUrl: z.string().url('Invalid URL'),
+  description: z.string().optional(),
+  isMonetized: z.boolean().optional(),
+  pricePerAccess: z.number().nonnegative().optional(),
 })
 
 // Union schema for all video sources
@@ -102,6 +111,9 @@ export async function POST(req: NextRequest) {
       source_type: data.sourceType,
       status: 'uploaded' as const,
       metadata: null,
+      description: data.description || null,
+      is_monetized: data.isMonetized || false,
+      price_per_access: data.pricePerAccess || 0.00,
     }
 
     if (data.sourceType === 's3') {

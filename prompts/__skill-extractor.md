@@ -45,6 +45,12 @@ Structure the body to match the complexity of the task:
 
 [1-2 sentence overview of what this skill accomplishes]
 
+## Prerequisites
+
+- [Tool/software needed]
+- [Required accounts or access]
+- [Environment setup needed]
+
 ## Instructions
 
 ### Step 1: [Action Name]
@@ -68,6 +74,17 @@ Structure the body to match the complexity of the task:
 ## Quick Start
 
 [Optional: Very brief version if there's a simple path]
+
+## Prerequisites
+
+### Software Requirements
+- [List tools seen in video]
+
+### Access Requirements  
+- [Accounts, API keys, credentials]
+
+### Environment Setup
+- [Configuration needed before starting]
 
 ## Procedure
 

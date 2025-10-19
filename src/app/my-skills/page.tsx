@@ -68,7 +68,16 @@ export default async function MySkillsPage() {
     <main className="grid-overlay min-h-screen">
       <header className="border-b-4 border-border bg-accent-thin">
         <div className="layout-shell py-6 flex items-center justify-between">
-          <SiteNav />
+          <div className="flex items-center gap-6">
+            <Image
+              src="/simple-logo.png"
+              alt="Watch & Learn logo"
+              width={64}
+              height={64}
+              priority
+            />
+            <SiteNav />
+          </div>
           <div className="flex items-center gap-3">
             <SignedOut>
               <SignInButton>

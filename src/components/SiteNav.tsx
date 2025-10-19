@@ -15,6 +15,8 @@ export function SiteNav() {
   const pathname = usePathname()
   const isHome = pathname === "/" || pathname === ""
   const isMySkills = pathname?.startsWith("/my-skills") ?? false
+  const isMarketplace = pathname?.startsWith("/marketplace") ?? false
+  const isTransactions = pathname?.startsWith("/transactions") ?? false
 
   return (
     <nav className="flex items-center gap-2">
@@ -27,6 +29,20 @@ export function SiteNav() {
         aria-current={isMySkills ? "page" : undefined}
       >
         My skills
+      </Link>
+      <Link
+        href="/marketplace"
+        className={linkClasses(isMarketplace)}
+        aria-current={isMarketplace ? "page" : undefined}
+      >
+        Marketplace
+      </Link>
+      <Link
+        href="/transactions"
+        className={linkClasses(isTransactions)}
+        aria-current={isTransactions ? "page" : undefined}
+      >
+        Transactions
       </Link>
     </nav>
   )
