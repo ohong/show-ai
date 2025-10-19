@@ -160,6 +160,15 @@ a:hover {
   font-size: 1rem;
 }
 
+.hero-highlight {
+  background-color: var(--color-danger);
+  color: var(--color-background);
+  padding: 0.05em 0.35em;
+  border-radius: 0.25em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 .brutalist-card {
   background-color: rgba(229, 231, 224, 0.18);
   border: 2px solid var(--color-border);

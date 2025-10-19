@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 const HACKER_MONOLOGUES = [
   "Initializing neural pathways... Building the future of AI automation.",
   "Loading skill matrix... Thousands of pre-trained agents ready to deploy.",
-  "Scanning marketplace... Discover skills that transform your workflow.",
+  "Scanning store... Discover skills that transform your workflow.",
   "Processing requests... From simple tasks to complex automation chains.",
   "Building connections... Connect with developers who share your vision.",
   "Deploying solutions... Turn ideas into executable AI capabilities.",
@@ -60,13 +60,13 @@ export default function Page() {
         <div className="brutalist-card hacker-card mb-8" style={{ animation: 'fade-in-text 0.6s ease-out 0.2s backwards' }}>
           <div className="flex items-center justify-between border-b-2 border-border pb-3 mb-6">
             <h1 className="font-display text-2xl uppercase tracking-[0.12em]">
-              AI Skill Marketplace
+              AI Skill Store
             </h1>
             <span className="badge">Live</span>
           </div>
           
           <div className="terminal-window is-processing">
-            <div className="terminal-header">/var/log/ai-marketplace</div>
+            <div className="terminal-header">/var/log/ai-store</div>
             <div className="terminal-body space-y-2 min-h-[120px]">
               <p className="font-mono text-sm leading-relaxed">
                 <span className="text-muted">{">"}</span> {displayedText}
@@ -113,7 +113,7 @@ export default function Page() {
               <h3 className="font-display text-lg uppercase tracking-[0.08em]">Custom Skills</h3>
             </div>
             <p className="caption">
-              Create and sell your own AI skills. Build a marketplace of automation solutions.
+              Create and sell your own AI skills. Build a store of automation solutions.
             </p>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function Page() {
         <div className="layout-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-2" style={{ animation: 'fade-in-text 0.5s ease-out 0.7s backwards' }}>
             <p className="font-display text-lg uppercase tracking-[0.08em]">
-              Discover AI Skills in Our Marketplace
+              Discover AI Skills in Our Store
             </p>
             <p className="caption max-w-xl text-sm">
               Browse and purchase pre-built AI agent skills from our community. Find the perfect automation
@@ -136,7 +136,7 @@ export default function Page() {
             className="button-inline"
             style={{ animation: 'fade-in-text 0.5s ease-out 0.8s backwards' }}
           >
-            Explore Marketplace
+            Explore Store
           </button>
         </div>
       </footer>

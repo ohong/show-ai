@@ -35,7 +35,7 @@ export function SiteNav() {
         className={linkClasses(isMarketplace)}
         aria-current={isMarketplace ? "page" : undefined}
       >
-        Marketplace
+        Store
       </Link>
       <Link
         href="/transactions"
@@ -47,5 +47,4 @@ export function SiteNav() {
     </nav>
   )
 }
-
 

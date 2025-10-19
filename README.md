@@ -1,8 +1,12 @@
-# Show AI
+# Watch & Learn
 
 **Teach AI agents new skills by showing, not writing.**
 
 *Started at the Gemini x TED AI Hackathon (Oct 2025)*
+
+Watch & Learn transforms screen recordings into "skills" for AI agents. Instead of writing tedious documentation, simply record yourself performing a task with narration. The system automatically extracts step-by-step instructions, automation scripts, templates, and reference assets—converting tacit knowledge into structured formats AI agents can follow. Deploy skills as downloadable ZIP files, MCP servers, or run computer-use automations.
+
+The core insight: demonstration captures nuance that written instructions miss, making on-the-job agentic training faster and more reliable.
 
 ## The Problem
 
@@ -10,7 +14,7 @@ Writing detailed prompts and instructions for AI agents is time-consuming and te
 
 ## Our Solution
 
-Show AI converts screen recordings into executable skill packages. Simply record yourself performing a task with light narration, and our system automatically generates:
+Watch & Learn converts screen recordings into executable skill packages. Simply record yourself performing a task with light narration, and our system automatically generates:
 
 - **SKILL.md** - Step-by-step instructions AI agents can follow
 - **Scripts** - Automation code extracted from your demonstration
