@@ -95,6 +95,7 @@ a:hover {
 
 .grid-overlay {
   position: relative;
+  overflow: hidden;
 }
 
 .grid-overlay::before {
@@ -104,9 +105,28 @@ a:hover {
   pointer-events: none;
   background-image: var(--grid-background-image, linear-gradient(var(--grid-line-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px));
   background-size: var(--grid-size);
-  opacity: 0.65;
+  opacity: 0.4;
   mix-blend-mode: multiply;
+  z-index: 1;
 }
+
+.grid-overlay::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(29, 74, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(245, 78, 0, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(220, 147, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 90% 20%, rgba(29, 74, 255, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 60% 40%, rgba(29, 74, 255, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 10% 90%, rgba(220, 147, 0, 0.08) 0%, transparent 45%);
+  animation: gradient-drift 20s ease-in-out infinite;
+  filter: blur(2px);
+  z-index: 0;
+}
+
 
 .layout-shell {
   position: relative;
@@ -327,7 +347,7 @@ input[type="file"] {
   font-family: var(--font-space-mono), monospace;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: var(--color-muted);
 }
 
@@ -345,7 +365,7 @@ input[type="file"] {
 .accent-block {
   border: 2px solid var(--color-border);
   background-color: rgba(213, 215, 206, 0.28);
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
 :root[data-theme="dark"] .accent-block {
@@ -463,6 +483,112 @@ input[type="file"] {
   }
 }
 
+@keyframes glitch-effect {
+  0% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  10% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  20% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(180deg);
+  }
+  30% {
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(270deg);
+  }
+  40% {
+    transform: translate(2px, -2px);
+    filter: hue-rotate(360deg);
+  }
+  50% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  60% {
+    transform: translate(-1px, 1px);
+    filter: hue-rotate(45deg);
+  }
+  70% {
+    transform: translate(1px, -1px);
+    filter: hue-rotate(90deg);
+  }
+  80% {
+    transform: translate(-1px, 1px);
+    filter: hue-rotate(135deg);
+  }
+  90% {
+    transform: translate(1px, -1px);
+    filter: hue-rotate(180deg);
+  }
+  100% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes glitch-text {
+  0%, 100% {
+    text-shadow: 
+      0 0 0 transparent,
+      0 0 0 transparent,
+      0 0 0 transparent;
+  }
+  10% {
+    text-shadow: 
+      2px 0 0 var(--color-info),
+      -2px 0 0 var(--color-danger),
+      0 2px 0 var(--color-warning);
+  }
+  20% {
+    text-shadow: 
+      -2px 0 0 var(--color-danger),
+      2px 0 0 var(--color-info),
+      0 -2px 0 var(--color-warning);
+  }
+  30% {
+    text-shadow: 
+      1px 0 0 var(--color-info),
+      -1px 0 0 var(--color-danger),
+      0 1px 0 var(--color-warning);
+  }
+  40% {
+    text-shadow: 
+      -1px 0 0 var(--color-danger),
+      1px 0 0 var(--color-info),
+      0 -1px 0 var(--color-warning);
+  }
+  50% {
+    text-shadow: 
+      0 0 0 transparent,
+      0 0 0 transparent,
+      0 0 0 transparent;
+  }
+  60% {
+    text-shadow: 
+      1px 0 0 var(--color-info),
+      -1px 0 0 var(--color-danger);
+  }
+  70% {
+    text-shadow: 
+      -1px 0 0 var(--color-danger),
+      1px 0 0 var(--color-info);
+  }
+  80% {
+    text-shadow: 
+      0.5px 0 0 var(--color-info),
+      -0.5px 0 0 var(--color-danger);
+  }
+  90% {
+    text-shadow: 
+      -0.5px 0 0 var(--color-danger),
+      0.5px 0 0 var(--color-info);
+  }
+}
+
 @keyframes fade-in-text {
   from {
     opacity: 0;
@@ -473,6 +599,41 @@ input[type="file"] {
     clip-path: inset(0 0 0 0);
   }
 }
+
+@keyframes gradient-drift {
+  0% {
+    opacity: 0.3;
+    filter: hue-rotate(0deg) blur(2px);
+  }
+  25% {
+    opacity: 0.5;
+    filter: hue-rotate(15deg) blur(2px);
+  }
+  50% {
+    opacity: 0.4;
+    filter: hue-rotate(30deg) blur(2px);
+  }
+  75% {
+    opacity: 0.6;
+    filter: hue-rotate(45deg) blur(2px);
+  }
+  100% {
+    opacity: 0.3;
+    filter: hue-rotate(0deg) blur(2px);
+  }
+}
+
+@keyframes grid-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.5;
+    filter: brightness(1.1);
+  }
+}
+
 
 @keyframes border-glow {
   0% {
@@ -510,6 +671,32 @@ input[type="file"] {
 .accent-block:hover {
   transform: translateY(-2px);
   border-color: var(--color-info);
+  box-shadow: 0 4px 12px rgba(29, 74, 255, 0.2);
+}
+
+/* Enhanced accent block with data flow */
+.accent-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(29, 74, 255, 0.05), transparent);
+  transform-origin: left;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.accent-block:hover::before {
+  opacity: 1;
+  animation: scan-line 0.6s ease-out;
+}
+
+/* Pulsing effect for feature cards */
+.accent-block:hover {
+  animation: border-glow 1.5s ease-in-out infinite;
 }
 
 /* Terminal-style cursor for headings */
@@ -522,17 +709,30 @@ input[type="file"] {
   margin-left: 0.25rem;
 }
 
-/* Subtle grid background - no animations */
+/* Enhanced grid background with animated gradients */
 .grid-overlay::before {
   background-image: linear-gradient(var(--grid-line-color) 1px, transparent 1px), 
                     linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
   background-size: var(--grid-size);
   opacity: 0.3;
   transition: opacity 0.3s ease;
+  animation: grid-pulse 8s ease-in-out infinite;
 }
 
 .grid-overlay:hover::before {
-  opacity: 0.5;
+  opacity: 0.6;
+}
+
+.grid-overlay:hover::after {
+  filter: blur(3px);
+  opacity: 0.8;
+}
+
+/* Enhanced grid lines with subtle glow */
+.grid-overlay::before {
+  box-shadow: 
+    inset 0 0 20px rgba(29, 74, 255, 0.1),
+    inset 0 0 40px rgba(245, 78, 0, 0.05);
 }
 
 /* Loading animation for terminal feel */
@@ -584,4 +784,106 @@ h1, h2 {
 /* Reusable fade-in class */
 .fade-in-text {
   animation: fade-in-text 0.5s ease-out backwards;
+}
+
+/* Glitch effect classes */
+.glitch-text {
+  animation: glitch-text 3s ease-in-out infinite;
+  position: relative;
+}
+
+.glitch-text:hover {
+  animation: glitch-text 0.5s ease-in-out infinite;
+}
+
+.glitch-transform {
+  animation: glitch-effect 4s ease-in-out infinite;
+}
+
+.glitch-transform:hover {
+  animation: glitch-effect 0.8s ease-in-out infinite;
+}
+
+/* Hacker card visuals */
+.hacker-card {
+  position: relative;
+  animation: border-glow 2.4s ease-in-out infinite;
+}
+
+/* Enhanced hacker card with scan lines */
+.hacker-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(29, 74, 255, 0.1), transparent);
+  transform-origin: left;
+  opacity: 0;
+  pointer-events: none;
+  animation: scan-line 3s ease-in-out infinite;
+}
+
+/* Pulsing data flow effect */
+.hacker-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(29, 74, 255, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(245, 78, 0, 0.08) 0%, transparent 30%);
+  opacity: 0;
+  animation: data-flow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes data-flow {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.terminal-window {
+  border: 2px solid var(--color-border);
+  background: rgba(229, 231, 224, 0.12);
+}
+
+.terminal-window .terminal-header {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--color-border);
+  font-family: var(--font-space-mono), monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  color: var(--color-muted);
+}
+
+.terminal-window .terminal-body {
+  padding: 0.75rem;
+}
+
+.terminal-window.is-processing .terminal-body {
+  animation: glitch-pulse 1.8s ease-in-out infinite;
+}
+
+.terminal-window.success .terminal-body {
+  background: rgba(29, 255, 120, 0.06);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  margin-left: 0.2rem;
+  background: currentColor;
+  animation: terminal-blink 0.9s steps(1) infinite;
 }

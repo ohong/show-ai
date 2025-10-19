@@ -9,6 +9,7 @@ import {
 } from "@clerk/nextjs";
 import { SiteNav } from "./SiteNav";
 import { CustomUserButton } from "./CustomUserButton";
+import { InteractiveHackerCard } from "./InteractiveHackerCard";
 
 export function PageHeader() {
   return (
@@ -44,55 +45,21 @@ export function PageHeader() {
           </div>
         </div>
         
-        <div className="grid gap-12 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-start">
+        <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div className="stack">
-            <h1 className="font-display text-4xl tracking-[0.05em] md:text-5xl" style={{ animation: 'fade-in-text 0.5s ease-out' }}>
+            <h1 className="font-display text-4xl tracking-[0.05em] md:text-5xl glitch-text glitch-transform" style={{ animation: 'fade-in-text 0.5s ease-out' }}>
               Teach AI agents new skills by showing, not prompting
             </h1>
             
-            <p className="caption max-w-xl" style={{ animation: 'fade-in-text 0.5s ease-out 0.1s backwards' }}>
+            <p className="caption max-w-xl mx-auto" style={{ animation: 'fade-in-text 0.5s ease-out 0.1s backwards' }}>
               Record your best walkthrough once and let Watch &amp; Learn document it for every agent.
               Upload a file or paste a link, review the live trace, and leave with a downloadable
               bundle your team can run immediately.
             </p>
             
-            <ol className="grid gap-4 sm:grid-cols-3">
-              <li className="accent-block">
-                <p className="meta-label">
-                  Step 1
-                </p>
-                <p className="font-mono text-lg tracking-tight">
-                  Upload your walkthrough
-                </p>
-                <p className="caption text-sm">
-                  Drag a file or paste a link. We hash it instantly and skip duplicates.
-                </p>
-              </li>
-              
-              <li className="accent-block">
-                <p className="meta-label">
-                  Step 2
-                </p>
-                <p className="font-mono text-lg tracking-tight">
-                  Watch the AI learn
-                </p>
-                <p className="caption text-sm">
-                  Follow the live trace and confirm every action the model records.
-                </p>
-              </li>
-              
-              <li className="accent-block">
-                <p className="meta-label">
-                  Step 3
-                </p>
-                <p className="font-mono text-lg tracking-tight">
-                  Download the skill bundle
-                </p>
-                <p className="caption text-sm">
-                  Get docs, scripts, and assets your agents can run immediately.
-                </p>
-              </li>
-            </ol>
+          </div>
+          <div className="stack">
+            <InteractiveHackerCard />
           </div>
         </div>
       </div>
