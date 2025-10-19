@@ -1,5 +1,6 @@
 # Claude Code
 CLAUDE.md
+.claude/
 
 # Environment variables
 .env.local

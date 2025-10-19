@@ -1,0 +1,20 @@
+{
+  "name": "show-ai",
+  "version": "1.0.0",
+  "description": "**Teach AI agents new skills by showing, not writing.**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohong/show-ai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ohong/show-ai/issues"
+  },
+  "homepage": "https://github.com/ohong/show-ai#readme"
+}
