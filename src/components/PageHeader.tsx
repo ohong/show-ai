@@ -1,45 +1,77 @@
+import Image from "next/image";
+
 export function PageHeader() {
   return (
     <header className="border-b-4 border-border bg-accent-thin">
       <div className="layout-shell py-16">
+        <div className="flex flex-col gap-6 pb-12 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-4">
+            <Image
+              src="/simple-logo.png"
+              alt="Watch & Learn logo"
+              width={64}
+              height={64}
+              priority
+            />
+            <div className="flex flex-col gap-1">
+              <span className="meta-label">Agent-ready skills from real workflows</span>
+              <span className="font-display text-sm uppercase tracking-[0.24em]">
+                Watch &amp; Learn
+              </span>
+            </div>
+          </div>
+          <a href="#upload" className="button-inline">
+            Upload your walkthrough
+          </a>
+        </div>
         <div className="grid gap-12 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] md:items-start">
           <div className="stack">
-            <span className="meta-label">Watch & Learn · Frontend Scaffold</span>
             <h1 className="font-display text-4xl tracking-[0.05em] md:text-5xl">
-              Show AI Skill Compiler
+              Teach AI agents new skills by showing, not prompting
             </h1>
             <p className="caption max-w-xl">
-              Feed Show AI a screen recording or link and receive an executable skill package.
-              The scaffold keeps the blueprint visible: no gradients, no chrome — just the pipeline
-              that builders and agents need to trust.
+              Record your best walkthrough once and let Watch &amp; Learn document it for every agent.
+              Upload a file or paste a link, review the live trace, and leave with a downloadable
+              bundle your team can run immediately.
             </p>
-            <div className="grid gap-3 sm:grid-cols-3">
-              <div className="accent-block">
-                <p className="meta-label">Latency Target</p>
-                <p className="font-mono text-lg tracking-tight">&lt; 90 seconds</p>
-              </div>
-              <div className="accent-block">
-                <p className="meta-label">Cache Hit Rate</p>
-                <p className="font-mono text-lg tracking-tight">80% +</p>
-              </div>
-              <div className="accent-block">
-                <p className="meta-label">Output Format</p>
-                <p className="font-mono text-lg tracking-tight">MCP Bundle</p>
-              </div>
-            </div>
+            <ol className="grid gap-4 sm:grid-cols-3">
+              <li className="accent-block">
+                <p className="meta-label">Step 1</p>
+                <p className="font-mono text-lg tracking-tight">Upload your walkthrough</p>
+                <p className="caption text-sm">
+                  Drag a file or paste a link. We hash it instantly and skip duplicates.
+                </p>
+              </li>
+              <li className="accent-block">
+                <p className="meta-label">Step 2</p>
+                <p className="font-mono text-lg tracking-tight">Watch the AI learn</p>
+                <p className="caption text-sm">
+                  Follow the live trace and confirm every action the model records.
+                </p>
+              </li>
+              <li className="accent-block">
+                <p className="meta-label">Step 3</p>
+                <p className="font-mono text-lg tracking-tight">Download the skill bundle</p>
+                <p className="caption text-sm">
+                  Get docs, scripts, and assets your agents can run immediately.
+                </p>
+              </li>
+            </ol>
           </div>
           <aside className="stack border-l-4 border-border pl-6">
             <div>
-              <p className="meta-label">Release</p>
-              <p className="font-mono text-sm">Version 0.1 · MVP</p>
+              <p className="meta-label">Perfect for</p>
+              <p className="font-mono text-sm">Ops, enablement, and support teams documenting UI flows</p>
             </div>
             <div>
-              <p className="meta-label">Stack</p>
-              <p className="font-mono text-sm">Next · Tailwind · TypeScript</p>
+              <p className="meta-label">Why teams switch</p>
+              <p className="font-mono text-sm">
+                Create repeatable agent skills without writing a single line of code
+              </p>
             </div>
             <div>
-              <p className="meta-label">Architecture</p>
-              <p className="font-mono text-sm">Supabase · Gemini 2.5 · Browserbase</p>
+              <p className="meta-label">What you receive</p>
+              <p className="font-mono text-sm">Downloadable bundle plus clear instructions for agents</p>
             </div>
           </aside>
         </div>

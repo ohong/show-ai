@@ -13,11 +13,19 @@ export default function Page() {
       <PipelineSection />
       <TechSpecs />
       <footer className="border-t-4 border-border bg-background py-12">
-        <div className="layout-shell flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <p className="meta-label">Show AI · Screen recordings ➜ Executable skills</p>
-          <p className="font-mono text-xs text-muted">
-            MVP scaffold · Frontend only · Inspired by Watch &amp; Learn design system
-          </p>
+        <div className="layout-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-2">
+            <p className="font-display text-lg uppercase tracking-[0.08em]">
+              Ready to turn tutorials into agent skills?
+            </p>
+            <p className="caption max-w-xl text-sm">
+              Upload a recording today and leave with a transparent, repeatable skill bundle your
+              whole team can trust.
+            </p>
+          </div>
+          <a href="#upload" className="button-inline">
+            Get started
+          </a>
         </div>
       </footer>
     </main>

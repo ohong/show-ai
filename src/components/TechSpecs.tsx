@@ -5,7 +5,7 @@ export function TechSpecs() {
     <section className="bg-accent-thin">
       <div className="layout-shell py-14">
         <div className="stack gap-8">
-          <h2 className="section-heading">Technical Parameters</h2>
+          <h2 className="section-heading">Key details at a glance</h2>
           <div className="brutalist-card p-0">
             {techSpecs.map((spec) => (
               <div

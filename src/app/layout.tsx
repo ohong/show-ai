@@ -17,8 +17,9 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Show AI | Convert Screen Recordings into Skills",
-  description: "Upload a screen recording and watch Show AI transform it into an executable AI skill package."
+  title: "Watch & Learn | Convert Screen Recordings into Skills",
+  description:
+    "Upload a screen recording and watch Watch & Learn transform it into an executable skill package with full transparency."
 };
 
 export default function RootLayout({

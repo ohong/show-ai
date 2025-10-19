@@ -6,10 +6,11 @@ export function PipelineSection() {
       <div className="layout-shell py-16">
         <div className="grid gap-12 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
           <div className="stack">
-            <h2 className="section-heading">Pipeline Blueprint</h2>
+            <h2 className="section-heading">What happens after you hit upload</h2>
             <p className="caption">
-              The interface mirrors the runtime: three deliberate moves with visible outputs. Each
-              section maps to telemetry we surface back to operators.
+              We keep the process transparent from the moment you submit a video. You see the same
+              milestones your agents rely on, so it is easy to trust the output and share it with the
+              rest of your team.
             </p>
           </div>
           <div className="grid gap-6">

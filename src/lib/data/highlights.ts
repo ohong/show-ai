@@ -1,50 +1,56 @@
 export const highlightTiles = [
   {
-    title: "Cache-first Uploads",
-    description: "SHA-256 hashing checks Supabase for prior matches so returning tutorials resolve instantly without reprocessing.",
-    badge: "Deduplication",
-    cadence: "Pre-Processing"
+    step: "Step 01",
+    title: "Upload your walkthrough",
+    summary: "Start with a recording or link—whatever is fastest.",
+    userAction: "Drag in a video up to 30 minutes or share a public YouTube/MP4 URL.",
+    systemAction: "We hash the footage instantly, reuse existing skills, and warn on large files before upload.",
+    badge: "Input"
   },
   {
-    title: "Thinking Trace Stream",
-    description: "Gemini 2.5 emits video analysis, transcription, UI detection, and generation events in real time for full transparency.",
-    badge: "Observability",
-    cadence: "During Extraction"
+    step: "Step 02",
+    title: "Follow the live trace",
+    summary: "See exactly what the AI understands while it learns from your video.",
+    userAction: "Review the thinking trace, pause if anything looks off, and jump to key timestamps.",
+    systemAction: "We narrate each frame, detect UI actions, and keep the transcript synced in real time.",
+    badge: "Trace"
   },
   {
-    title: "Executable Skill Package",
-    description: "Compile markdown docs, MCP-ready server code, and automation assets into a downloadable bundle in minutes.",
-    badge: "Output",
-    cadence: "Post-Processing"
+    step: "Step 03",
+    title: "Download your skill",
+    summary: "Leave with everything your agents need to run the process on demand.",
+    userAction: "Review the generated docs and scripts, then export the full bundle.",
+    systemAction: "We package an MCP-ready server, walkthrough docs, and automation assets tied to your hash.",
+    badge: "Output"
   }
 ] as const;
 
 export const pipelineSteps = [
   {
     step: "01",
-    title: "Upload or Link",
+    title: "Upload & Verify",
     details: [
-      "Drag-and-drop MP4, MOV, WEBM up to 30 minutes",
-      "Optional YouTube link ingestion via yt-dlp",
-      "Client-side hashing keeps files local until needed"
+      "Drag-or-drop MP4, MOV, WEBM up to 30 minutes or paste a YouTube link",
+      "Client-side SHA-256 hashing keeps footage local until dedupe check passes",
+      "Supabase cache short-circuits returning tutorials in under 150 ms"
     ]
   },
   {
     step: "02",
-    title: "Analyse & Trace",
+    title: "Trace & Explain",
     details: [
-      "Frame sampling + narration transcription",
-      "UI control detection for task modeling",
-      "Live progress events surfaced to the UI"
+      "Frame sampling, narration transcription, and UI detection stream live to the dashboard",
+      "Operators can pause or resume processing while inspecting trace events",
+      "Every call to Gemini 2.5 is mirrored in the interface for auditability"
     ]
   },
   {
     step: "03",
-    title: "Package & Deliver",
+    title: "Assemble & Deliver",
     details: [
-      "Generate MCP server blueprint",
-      "Bundle instructions, scripts, and assets",
-      "Store package & metadata in Supabase"
+      "Generate MCP server blueprint with typed stubs and environment scaffolding",
+      "Bundle markdown guides, scripts, and automation assets into a portable archive",
+      "Store package metadata in Supabase so future uploads inherit the same skill"
     ]
   }
 ] as const;
