@@ -1,21 +1,34 @@
+"use client";
+
 import { PageHeader } from "@/components/PageHeader";
-import { PipelineSection } from "@/components/PipelineSection";
-import { UploadPanel } from "@/components/UploadPanel";
-import { TechSpecs } from "@/components/TechSpecs";
-import { UserProfile } from "@/components/UserProfile";
-import { DebugUserSync } from "@/components/DebugUserSync";
+import { VideoUploadDialog } from "@/components/VideoUploadDialog";
+import { useState } from "react";
 
 export default function Page() {
+  const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
+
   return (
     <main className="grid-overlay min-h-screen">
       <PageHeader />
-      <div className="layout-shell py-8 space-y-6">
-        <UserProfile />
-        <DebugUserSync />
-      </div>
-      <UploadPanel />
-      <PipelineSection />
-      <TechSpecs />
+      
+      {/* Main Upload Section */}
+      <section className="border-y-4 border-border bg-background py-20">
+        <div className="layout-shell">
+          <div className="stack items-center gap-6 text-center">
+            <h2 className="section-heading">Upload Your Tutorial</h2>
+            <p className="caption max-w-2xl">
+              Transform your screen recordings into AI agent skills. Upload a video or share a YouTube link to get started.
+            </p>
+            <button
+              onClick={() => setIsUploadDialogOpen(true)}
+              className="button-inline text-lg px-8 py-4"
+            >
+              Upload Video
+            </button>
+          </div>
+        </div>
+      </section>
+      
       <footer className="border-t-4 border-border bg-background py-12">
         <div className="layout-shell flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-2">
@@ -27,11 +40,18 @@ export default function Page() {
               whole team can trust.
             </p>
           </div>
-          <a href="#upload" className="button-inline">
+          <button
+            onClick={() => setIsUploadDialogOpen(true)}
+            className="button-inline"
+          >
             Get started
-          </a>
+          </button>
         </div>
       </footer>
+      <VideoUploadDialog
+        isOpen={isUploadDialogOpen}
+        onClose={() => setIsUploadDialogOpen(false)}
+      />
     </main>
   );
 }

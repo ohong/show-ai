@@ -6,6 +6,7 @@ from typing import Dict, Any, Optional
 import boto3
 from config import AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET, DOWNLOAD_DIR
 from gemini_handler import GeminiHandler
+from supabase_client import SupabaseClient
 
 
 class VideoHandler:
@@ -24,6 +25,9 @@ class VideoHandler:
         # Initialize Gemini handler
         self.gemini_handler = GeminiHandler()
         
+        # Initialize Supabase client
+        self.supabase = SupabaseClient()
+        
         # Ensure download directory exists
         Path(DOWNLOAD_DIR).mkdir(parents=True, exist_ok=True)
 
@@ -41,10 +45,14 @@ class VideoHandler:
             # Extract video data
             video_data = message.get("video", {})
             source_type = video_data.get("source_type", "").lower()
+            video_id = video_data.get("id")
             
             print("\n" + "=" * 60)
-            print(f"🎬 Processing Video: {video_data.get('id')}")
+            print(f"🎬 Processing Video: {video_id}")
             print(f"   Source Type: {source_type}")
+            
+            # Update status to processing
+            self.supabase.update_processing_status(video_id, "processing")
             
             if source_type == "s3":
                 return self._handle_s3_video(video_data)
@@ -52,10 +60,14 @@ class VideoHandler:
                 return self._handle_youtube_video(video_data)
             else:
                 print(f"❌ Unknown source type: {source_type}")
+                self.supabase.mark_as_failed(video_id, f"Unknown source type: {source_type}")
                 return False
                 
         except Exception as e:
+            video_id = message.get("video", {}).get("id")
             print(f"❌ Error processing video: {e}")
+            if video_id:
+                self.supabase.mark_as_failed(video_id, str(e))
             return False
 
     def _handle_s3_video(self, video_data: Dict[str, Any]) -> bool:
@@ -77,6 +89,7 @@ class VideoHandler:
             
             if not file_key:
                 print("❌ No file_key provided for S3 video")
+                self.supabase.mark_as_failed(video_id, "No file_key provided")
                 return False
             
             # Prepare download path
@@ -89,6 +102,9 @@ class VideoHandler:
             print(f"   File Name: {file_name}")
             print(f"   Download Path: {download_path}")
             
+            # Update status to downloading
+            self.supabase.update_processing_status(video_id, "downloading")
+            
             # Download from S3
             self.s3_client.download_file(
                 Bucket=bucket,
@@ -99,6 +115,7 @@ class VideoHandler:
             # Verify file exists and check size
             if not download_path.exists():
                 print("❌ Downloaded file not found")
+                self.supabase.mark_as_failed(video_id, "Downloaded file not found")
                 return False
             
             file_size = download_path.stat().st_size
@@ -107,6 +124,8 @@ class VideoHandler:
             
             # Analyze with Gemini
             print(f"\n📊 Sending to Gemini for analysis...")
+            self.supabase.update_processing_status(video_id, "uploading")
+            
             analysis_result = self.gemini_handler.analyze_s3_video(
                 local_file_path=str(download_path),
                 video_id=video_id,
@@ -115,6 +134,19 @@ class VideoHandler:
             
             # Print analysis results
             self._print_analysis(analysis_result)
+            
+            # Save results to Supabase
+            if analysis_result.get("success"):
+                self.supabase.save_analysis_result(
+                    video_id=video_id,
+                    analysis=analysis_result.get("analysis", ""),
+                    mark_processed=True
+                )
+            else:
+                self.supabase.mark_as_failed(
+                    video_id=video_id,
+                    error_message=analysis_result.get("error", "Unknown error during analysis")
+                )
             
             # Clean up local file
             self._cleanup_local_file(download_path)
@@ -153,10 +185,13 @@ class VideoHandler:
             
             if not source_url:
                 print("❌ No source_url provided for YouTube video")
+                self.supabase.mark_as_failed(video_id, "No source_url provided")
                 return False
             
             # Analyze with Gemini
             print(f"\n📊 Sending to Gemini for analysis...")
+            self.supabase.update_processing_status(video_id, "processing")
+            
             analysis_result = self.gemini_handler.analyze_youtube_video(
                 youtube_url=source_url,
                 video_id=video_id
@@ -164,6 +199,19 @@ class VideoHandler:
             
             # Print analysis results
             self._print_analysis(analysis_result)
+            
+            # Save results to Supabase
+            if analysis_result.get("success"):
+                self.supabase.save_analysis_result(
+                    video_id=video_id,
+                    analysis=analysis_result.get("analysis", ""),
+                    mark_processed=True
+                )
+            else:
+                self.supabase.mark_as_failed(
+                    video_id=video_id,
+                    error_message=analysis_result.get("error", "Unknown error during analysis")
+                )
             
             return analysis_result.get("success", False)
             

@@ -6,13 +6,14 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { SiteNav } from "./SiteNav";
 
 export function PageHeader() {
   return (
     <header className="border-b-4 border-border bg-accent-thin">
       <div className="layout-shell py-16">
         <div className="mb-10 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <Image
               src="/simple-logo.png"
               alt="Watch & Learn logo"
@@ -20,6 +21,7 @@ export function PageHeader() {
               height={64}
               priority
             />
+            <SiteNav />
           </div>
           <div className="flex items-center gap-3">
             <SignedOut>
@@ -73,22 +75,7 @@ export function PageHeader() {
               </li>
             </ol>
           </div>
-          <aside className="stack border-l-4 border-border pl-6">
-            <div>
-              <p className="meta-label">Perfect for</p>
-              <p className="font-mono text-sm">Ops, enablement, and support teams documenting UI flows</p>
-            </div>
-            <div>
-              <p className="meta-label">Why teams switch</p>
-              <p className="font-mono text-sm">
-                Create repeatable agent skills without writing a single line of code
-              </p>
-            </div>
-            <div>
-              <p className="meta-label">What you receive</p>
-              <p className="font-mono text-sm">Downloadable bundle plus clear instructions for agents</p>
-            </div>
-          </aside>
+        
         </div>
       </div>
     </header>

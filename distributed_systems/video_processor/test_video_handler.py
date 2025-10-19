@@ -8,7 +8,7 @@ from video_handler import VideoHandler
 handler = VideoHandler()
 
 # Test message 1: S3 Video
-s3_message = {
+s3_message = { 
     "event": "video.created",
     "video": {
         "id": "e5605936-4eb3-4f0a-8eb3-643b4917bef7",

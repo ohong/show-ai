@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Dict, Any, Optional
 from google import genai
 from config import GEMINI_API_KEY
+from prompts import VIDEO_ANALYSIS_PROMPT
 
 
 class GeminiHandler:
@@ -61,7 +62,7 @@ class GeminiHandler:
                 model=self.model,
                 contents=[
                     processed_file,
-                    "Please provide a comprehensive analysis of this video. Include: 1) A summary of the main content, 2) Key topics discussed, 3) A quiz with 3-5 questions and an answer key based on the video content.",
+                    VIDEO_ANALYSIS_PROMPT,
                 ],
             )
 
@@ -110,7 +111,7 @@ class GeminiHandler:
                             file_data=types.FileData(file_uri=youtube_url)
                         ),
                         types.Part(
-                            text="Please provide a comprehensive analysis of this video. Include: 1) A summary of the main content, 2) Key topics discussed, 3) A quiz with 3-5 questions and an answer key based on the video content."
+                            text=VIDEO_ANALYSIS_PROMPT
                         ),
                     ]
                 ),

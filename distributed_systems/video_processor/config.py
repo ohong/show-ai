@@ -16,6 +16,10 @@ AWS_S3_BUCKET = os.getenv("AWS_S3_BUCKET", "watchlearn1")
 # Gemini API Configuration
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
+# Supabase Configuration
+SUPABASE_URL = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
+SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+
 # Download directory
 DOWNLOAD_DIR = os.getenv("DOWNLOAD_DIR", "./downloads")
 
@@ -32,9 +36,16 @@ if not GEMINI_API_KEY:
         "Please ensure GEMINI_API_KEY is set in .env.local"
     )
 
+if not all([SUPABASE_URL, SUPABASE_SERVICE_KEY]):
+    raise ValueError(
+        "Missing required Supabase environment variables. "
+        "Please ensure NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set in .env.local"
+    )
+
 print(f"✓ AWS Configuration loaded")
 print(f"  Region: {AWS_REGION}")
 print(f"  SQS URL: {AWS_SQS_URL}")
 print(f"  S3 Bucket: {AWS_S3_BUCKET}")
 print(f"  Download Dir: {DOWNLOAD_DIR}")
 print(f"✓ Gemini API Configuration loaded")
+print(f"✓ Supabase Configuration loaded")
