@@ -33,6 +33,7 @@ class BrowserbaseComputer(PlaywrightComputer):
         self._persist_context = persist_context
         self._context_file = context_file
         self._use_proxy = use_proxy
+        self._live_view_url = None
 
     def _load_context_id(self) -> str:
         """Load context ID from file if it exists."""
@@ -119,6 +120,18 @@ class BrowserbaseComputer(PlaywrightComputer):
             }]
 
         self._session = self._browserbase.sessions.create(**session_params)
+
+        # Get live view debug URL
+        try:
+            live_view_links = self._browserbase.sessions.debug(self._session.id)
+            self._live_view_url = live_view_links.debuggerFullscreenUrl
+            termcolor.cprint(
+                f"🔍 Live View URL: {self._live_view_url}",
+                color="cyan",
+                attrs=["bold"],
+            )
+        except Exception as e:
+            print(f"Warning: Could not get live view URL: {e}")
 
         self._browser = self._playwright.chromium.connect_over_cdp(
             self._session.connect_url

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 type VideoRow = {
   id: string
@@ -129,20 +130,57 @@ export function VideoCard({ video, onWatchVideo }: { video: VideoRow; onWatchVid
         </div>
       </div>
       
-      {/* Watch Skill Button - always visible */}
-      <div className="mt-3 pt-3 border-t border-border">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onWatchVideo(video.id, title);
-          }}
-          className="button-inline flex items-center gap-2 w-full justify-center"
-        >
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M8 5v10l8-5-8-5z"/>
-          </svg>
-          Watch Skill
-        </button>
+      {/* Action Buttons - always visible */}
+      <div className="mt-3 pt-3 border-t border-border space-y-2">
+        <div className="flex gap-2">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onWatchVideo(video.id, title);
+            }}
+            className="button-inline flex items-center gap-2 flex-1 justify-center"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M8 5v10l8-5-8-5z"/>
+            </svg>
+            Watch Skill
+          </button>
+          <Link
+            href={`/execute/${video.id}`}
+            className="button-inline flex items-center gap-2 flex-1 justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M6.3 2.841A1.5 1.5 0 0 1 7.5 2h5a1.5 1.5 0 0 1 1.2.6l3.5 4.5a1.5 1.5 0 0 1 0 1.8l-3.5 4.5a1.5 1.5 0 0 1-1.2.6h-5a1.5 1.5 0 0 1-1.2-.6l-3.5-4.5a1.5 1.5 0 0 1 0-1.8l3.5-4.5z"/>
+              <path d="M9 6v8m-2-4h4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+            Execute
+          </Link>
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="button-inline flex items-center gap-2 flex-1 justify-center"
+            disabled
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z" />
+              <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z" />
+              <path d="M17 5c0 1.657-3.134 3-7 3S3 6.657 3 5s3.134-3 7-3 7 1.343 7 3z" />
+            </svg>
+            Create MCP Server
+          </button>
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="button-inline flex items-center gap-2 flex-1 justify-center"
+            disabled
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" />
+            </svg>
+            Download as ZIP
+          </button>
+        </div>
       </div>
       
       {isExpanded && (
