@@ -9,6 +9,7 @@ import { createServerClient } from "@/lib/supabase"
 import Image from "next/image"
 import Link from "next/link"
 import { VideoCard } from "@/components/VideoCard"
+import { MySkillsPageClient } from "@/components/MySkillsPageClient"
 
 type VideoRow = {
   id: string
@@ -97,11 +98,7 @@ export default async function MySkillsPage() {
             </p>
           </div>
         ) : (
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {videos.map((v) => (
-              <VideoCard key={v.id} video={v} />
-            ))}
-          </div>
+          <MySkillsPageClient videos={videos} />
         )}
       </div>
     </main>

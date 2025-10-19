@@ -22,7 +22,7 @@ type VideoRow = {
   updated_at?: string | null
 }
 
-export function VideoCard({ video }: { video: VideoRow }) {
+export function VideoCard({ video, onWatchVideo }: { video: VideoRow; onWatchVideo: (videoId: string, videoTitle: string) => void }) {
   const [isExpanded, setIsExpanded] = useState(false)
   
   const title =
@@ -127,6 +127,22 @@ export function VideoCard({ video }: { video: VideoRow }) {
             {isExpanded ? '−' : '+'}
           </span>
         </div>
+      </div>
+      
+      {/* Watch Skill Button - always visible */}
+      <div className="mt-3 pt-3 border-t border-border">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onWatchVideo(video.id, title);
+          }}
+          className="button-inline flex items-center gap-2 w-full justify-center"
+        >
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 5v10l8-5-8-5z"/>
+          </svg>
+          Watch Skill
+        </button>
       </div>
       
       {isExpanded && (
