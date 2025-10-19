@@ -1,8 +1,34 @@
-# show-ai
-Show AI lets you “teach” AIs how to perform tasks from just a screen recording.
+# Show AI
 
-Started at the Gemini x TED AI Hackathon (Oct 2025)
+**Teach AI agents new skills by showing, not writing.**
 
-What we're building: Instead of writing lengthy prompts for AI agents to perform task the way you do, what if you could just show it a screen recording of you doing it with some light narration. Show AI will extract the "skill" (bundle of instructions, scripts, templates, etc. depending on the task) which can then be used by AI agents to perform the task.
+*Started at the Gemini x TED AI Hackathon (Oct 2025)*
 
-Built with Gemini 2.5 Computer Use model.
+## The Problem
+
+Writing detailed prompts and instructions for AI agents is time-consuming and tedious. Complex workflows require lengthy documentation that's hard to maintain and often misses crucial details that are obvious when you actually perform the task.
+
+## Our Solution
+
+Show AI converts screen recordings into executable skill packages. Simply record yourself performing a task with light narration, and our system automatically generates:
+
+- **SKILL.md** - Step-by-step instructions AI agents can follow
+- **Scripts** - Automation code extracted from your demonstration
+- **Templates** - Configuration files and boilerplate
+- **Assets** - Reference screenshots and outputs
+
+These skill packages can be downloaded as zip files, converted into MCP servers for AI integration, or executed directly in the browser via Browserbase.
+
+## How It Works
+
+1. Upload a screen recording (or YouTube URL) showing the task
+2. Our system extracts key frames and transcribes narration
+3. Gemini 2.5 Computer Use model analyzes the video and generates a structured skill package
+4. Review the extracted skill with a real-time thinking trace
+5. Download, integrate, or test-run your new AI skill
+
+**Smart Caching:** Identical videos are deduplicated by hash, providing instant results for popular tutorials and reducing processing costs.
+
+## Tech Stack
+
+Next.js • TypeScript • Tailwind CSS • Gemini 2.5 Computer Use • Browserbase • Supabase
