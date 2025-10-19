@@ -1,0 +1,204 @@
+{
+  "skills": [
+    {
+      "name": "data-visualization",
+      "description": "Transform datasets into interactive charts, dashboards, and visual reports using D3.js, Plotly, and statistical analysis"
+    },
+    {
+      "name": "meeting-minutes",
+      "description": "Generate structured meeting notes with action items, decisions, and follow-ups formatted for company standards"
+    },
+    {
+      "name": "sql-optimizer",
+      "description": "Analyze, optimize, and debug SQL queries with performance recommendations and query plan visualization"
+    },
+    {
+      "name": "contract-analyzer",
+      "description": "Extract key terms, obligations, and risks from legal contracts with clause-by-clause breakdown"
+    },
+    {
+      "name": "api-documentation",
+      "description": "Generate comprehensive API docs with endpoint specifications, examples, and interactive testing capabilities"
+    },
+    {
+      "name": "email-drafter",
+      "description": "Compose professional emails across contexts: sales, support, internal, executive with tone matching"
+    },
+    {
+      "name": "competitive-intel",
+      "description": "Research and synthesize competitor analysis with market positioning, feature comparison, and strategic insights"
+    },
+    {
+      "name": "interview-prep",
+      "description": "Generate technical and behavioral interview questions with model answers and evaluation rubrics"
+    },
+    {
+      "name": "financial-modeling",
+      "description": "Build financial models, projections, and scenario analysis in Excel format with formulas and visualizations"
+    },
+    {
+      "name": "onboarding-builder",
+      "description": "Create comprehensive employee onboarding programs with checklists, resources, and timeline management"
+    },
+    {
+      "name": "seo-optimizer",
+      "description": "Analyze content for SEO with keyword recommendations, meta descriptions, and readability improvements"
+    },
+    {
+      "name": "changelog-generator",
+      "description": "Transform git commits and PRs into user-friendly changelogs categorized by features, fixes, and breaking changes"
+    },
+    {
+      "name": "research-synthesizer",
+      "description": "Aggregate academic papers and sources into literature reviews with citation management and key findings"
+    },
+    {
+      "name": "quiz-maker",
+      "description": "Generate educational quizzes and assessments with multiple formats, answer keys, and difficulty scaling"
+    },
+    {
+      "name": "social-scheduler",
+      "description": "Plan social media content calendars with post ideas, optimal timing, and platform-specific formatting"
+    },
+    {
+      "name": "bug-reproducer",
+      "description": "Create detailed bug reports with reproduction steps, environment details, and debugging suggestions"
+    },
+    {
+      "name": "pitch-deck",
+      "description": "Build investor pitch decks with narrative flow, data visualization, and professional design templates"
+    },
+    {
+      "name": "regex-builder",
+      "description": "Construct and test regular expressions with pattern explanations, test cases, and common use examples"
+    },
+    {
+      "name": "translation-bridge",
+      "description": "Translate content while preserving tone, cultural context, and technical terminology across languages"
+    },
+    {
+      "name": "policy-writer",
+      "description": "Draft company policies and procedures with legal considerations, accessibility, and version control"
+    },
+    {
+      "name": "customer-persona",
+      "description": "Develop detailed customer personas with demographics, pain points, goals, and journey mapping"
+    },
+    {
+      "name": "retrospective-facilitator",
+      "description": "Guide team retrospectives with templates, prompts, and action item tracking for continuous improvement"
+    },
+    {
+      "name": "cost-calculator",
+      "description": "Build TCO and ROI calculators with configurable inputs, breakeven analysis, and sensitivity scenarios"
+    },
+    {
+      "name": "job-description",
+      "description": "Write inclusive job descriptions with role requirements, growth path, and compensation benchmarking"
+    },
+    {
+      "name": "crisis-comms",
+      "description": "Draft crisis communication plans and templates for incidents, outages, and sensitive situations"
+    },
+    {
+      "name": "database-schema",
+      "description": "Design normalized database schemas with ER diagrams, migration scripts, and indexing strategies"
+    },
+    {
+      "name": "grant-writer",
+      "description": "Compose grant proposals with narrative structure, budget justification, and impact measurement"
+    },
+    {
+      "name": "ab-test-analyzer",
+      "description": "Design and analyze A/B tests with statistical significance, sample size calculation, and recommendations"
+    },
+    {
+      "name": "knowledge-base",
+      "description": "Structure internal wikis and help centers with searchable documentation, categories, and maintenance workflows"
+    },
+    {
+      "name": "swot-analyzer",
+      "description": "Conduct SWOT analysis with strategic recommendations, risk assessment, and opportunity prioritization"
+    },
+    {
+      "name": "terraform-generator",
+      "description": "Generate infrastructure-as-code templates for cloud resources with best practices and security configurations"
+    },
+    {
+      "name": "newsletter-composer",
+      "description": "Create email newsletters with engaging copy, layout design, and audience segmentation strategies"
+    },
+    {
+      "name": "performance-review",
+      "description": "Write constructive performance reviews with competency assessment, growth areas, and development plans"
+    },
+    {
+      "name": "data-migration",
+      "description": "Plan data migration strategies with mapping, validation rules, rollback procedures, and testing protocols"
+    },
+    {
+      "name": "workshop-designer",
+      "description": "Design interactive workshops with activities, timing, materials, and facilitation guides"
+    },
+    {
+      "name": "incident-reporter",
+      "description": "Document incident postmortems with timeline, root cause analysis, and prevention measures"
+    },
+    {
+      "name": "survey-builder",
+      "description": "Create research surveys with validated question types, logic flows, and analysis frameworks"
+    },
+    {
+      "name": "procurement-rfp",
+      "description": "Draft RFPs and vendor evaluation criteria with scoring rubrics and negotiation talking points"
+    },
+    {
+      "name": "tutorial-maker",
+      "description": "Build step-by-step tutorials with screenshots, code examples, and troubleshooting sections"
+    },
+    {
+      "name": "release-notes",
+      "description": "Write customer-facing release notes from technical changes with benefit-focused messaging"
+    },
+    {
+      "name": "dashboard-designer",
+      "description": "Design executive dashboards with KPI selection, visualization types, and drill-down hierarchies"
+    },
+    {
+      "name": "compliance-checker",
+      "description": "Audit content and processes for regulatory compliance (GDPR, SOC2, HIPAA) with gap analysis"
+    },
+    {
+      "name": "video-script",
+      "description": "Write video scripts with scene descriptions, dialogue, timing, and production notes"
+    },
+    {
+      "name": "naming-generator",
+      "description": "Generate product, company, and feature names with domain availability, trademark checking, and rationale"
+    },
+    {
+      "name": "terraform-refactor",
+      "description": "Modernize legacy infrastructure code with module extraction, state management, and testing strategies"
+    },
+    {
+      "name": "metrics-framework",
+      "description": "Define success metrics and KPIs with measurement methodology, targets, and reporting cadence"
+    },
+    {
+      "name": "code-reviewer",
+      "description": "Provide code review feedback with security, performance, and maintainability recommendations"
+    },
+    {
+      "name": "playbook-writer",
+      "description": "Document operational playbooks and runbooks with decision trees, escalation paths, and troubleshooting steps"
+    },
+    {
+      "name": "budget-planner",
+      "description": "Build department budgets with allocation strategies, variance tracking, and forecast adjustments"
+    },
+    {
+      "name": "case-study",
+      "description": "Transform customer success stories into marketing case studies with metrics, quotes, and narrative structure"
+    }
+  ]
+}
