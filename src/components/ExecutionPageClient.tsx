@@ -37,10 +37,17 @@ type LogEntry = {
   message: string
 }
 
+type ReasoningEntry = {
+  timestamp: Date
+  reasoning: string
+  function_calls: string[]
+}
+
 export function ExecutionPageClient({ video, title }: { video: VideoRow; title: string }) {
   const [executionStatus, setExecutionStatus] = useState<ExecutionStatus>("idle")
   const [executionResult, setExecutionResult] = useState<ExecutionResult | null>(null)
   const [logs, setLogs] = useState<LogEntry[]>([])
+  const [reasoningLogs, setReasoningLogs] = useState<ReasoningEntry[]>([])
   const [isInstructionsExpanded, setIsInstructionsExpanded] = useState(false)
 
   const handleStartExecution = async () => {
@@ -56,6 +63,7 @@ export function ExecutionPageClient({ video, title }: { video: VideoRow; title: 
 
     setExecutionStatus("running")
     setLogs([])
+    setReasoningLogs([])
     setExecutionResult(null)
 
     try {
@@ -94,6 +102,12 @@ export function ExecutionPageClient({ video, title }: { video: VideoRow; title: 
 
             if (data.type === 'log') {
               setLogs(prev => [...prev, { timestamp: new Date(), message: data.message }])
+            } else if (data.type === 'reasoning') {
+              setReasoningLogs(prev => [...prev, {
+                timestamp: new Date(),
+                reasoning: data.reasoning,
+                function_calls: data.function_calls
+              }])
             } else if (data.type === 'live_view_url') {
               setExecutionResult(prev => ({
                 ...prev,
@@ -261,6 +275,38 @@ export function ExecutionPageClient({ video, title }: { video: VideoRow; title: 
             {logs.map((log, index) => (
               <div key={index} className="whitespace-pre-wrap">
                 <span className="text-gray-500">[{log.timestamp.toLocaleTimeString()}]</span> {log.message}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Gemini Reasoning Logs */}
+      {reasoningLogs.length > 0 && (
+        <div className="accent-block">
+          <h2 className="font-display text-xl tracking-[0.05em] mb-4">Gemini Reasoning</h2>
+          <div className="space-y-3 h-96 overflow-y-auto">
+            {reasoningLogs.map((entry, index) => (
+              <div key={index} className="border-2 border-border rounded-md overflow-hidden">
+                <div className="grid grid-cols-2 gap-0">
+                  <div className="p-4 bg-purple-950/20 border-r-2 border-border">
+                    <h3 className="text-xs font-bold text-purple-400 mb-2">REASONING</h3>
+                    <p className="font-mono text-sm whitespace-pre-wrap">{entry.reasoning}</p>
+                  </div>
+                  <div className="p-4 bg-cyan-950/20">
+                    <h3 className="text-xs font-bold text-cyan-400 mb-2">FUNCTION CALLS</h3>
+                    <div className="space-y-2">
+                      {entry.function_calls.map((fc, fcIndex) => (
+                        <pre key={fcIndex} className="font-mono text-sm whitespace-pre-wrap">{fc}</pre>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="px-4 py-2 bg-accent-thin border-t-2 border-border">
+                  <span className="text-xs text-muted-foreground font-mono">
+                    {entry.timestamp.toLocaleTimeString()}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
